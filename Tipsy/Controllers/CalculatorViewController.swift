@@ -16,6 +16,14 @@ class CalculatorViewController: UIViewController {
     
     let splitCounter = 1
     
+    var billTotal = 0.0
+    var tip = 0.0
+    var finalResult = "0.0"
+    
+   
+    
+    
+    
     
     
     
@@ -48,6 +56,7 @@ class CalculatorViewController: UIViewController {
         tenPctButton.isSelected = false
         twentyPctButton.isSelected = false
         sender.isSelected = true
+        billTextField.endEditing(true)
         
         
     }
@@ -55,14 +64,25 @@ class CalculatorViewController: UIViewController {
     @IBAction func calculatePressed(_ sender: UIButton) {
         if zeroPctButton.isSelected == true {
             print(zeroPct)
+            tip = zeroPct
         } else if tenPctButton.isSelected == true {
             print(tenPct)
+            tip = tenPct
         } else {
             print(twentyPct)
+            tip = twentyPct
         }
         
         print(stepperOutlet.value)
+        print(billTextField.text ?? "No data")
         
+        let totalBill = billTextField.text!
+        if totalBill != "" {
+            billTotal = Double(totalBill)!
+            let result = billTotal * (1 + tip) / Double(stepperOutlet.value)
+            finalResult = String(format: "%.2f", result)
+            print("Result: ", finalResult)
+        }
     }
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         var stepperCurrent: CGFloat
@@ -70,12 +90,14 @@ class CalculatorViewController: UIViewController {
         stepperOutlet.value = Double(stepperCurrent)
         splitNumberLabel.text = String(format: "%.0f", Double(stepperCurrent))
        // print(stepperCurrent)
-        
+        billTextField.endEditing(true)
         
         
     }
     
     @IBAction func textFieldChanged(_ sender: UITextField) {
+       
     }
 }
+
 
