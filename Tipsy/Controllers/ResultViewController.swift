@@ -11,9 +11,9 @@ import UIKit
 class ResultViewController: UIViewController {
 
     
-    @IBOutlet weak var resultOutlet: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
     
-    @IBOutlet weak var informationOutlet: UILabel!
+    @IBOutlet weak var settingsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

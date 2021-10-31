@@ -11,15 +11,15 @@ import UIKit
 class CalculatorViewController: UIViewController {
     
     
-    @IBOutlet weak var textFieldOutlet: UITextField!
-    @IBOutlet weak var stepperOutlet: UILabel!
+    @IBOutlet weak var billTextField: UITextField!
+    @IBOutlet weak var splitNumberLabel: UILabel!
     
     
-    @IBOutlet weak var tip0outlet: UIButton!
+    @IBOutlet weak var zeroPctButton: UIButton!
     
-    @IBOutlet weak var tip10outlet: UIButton!
+    @IBOutlet weak var tenPctButton: UIButton!
     
-    @IBOutlet weak var tip20outlet: UIButton!
+    @IBOutlet weak var twentyPctButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -31,9 +31,9 @@ class CalculatorViewController: UIViewController {
     @IBAction func tipChanged(_ sender: UIButton) {
     }
     
-    @IBAction func calculateButton(_ sender: UIButton) {
+    @IBAction func calculatePressed(_ sender: UIButton) {
     }
-    @IBAction func stepperChanged(_ sender: Any) {
+    @IBAction func stepperValueChanged(_ sender: Any) {
     }
     
     @IBAction func textFieldChanged(_ sender: UITextField) {
