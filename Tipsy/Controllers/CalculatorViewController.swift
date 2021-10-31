@@ -41,6 +41,10 @@ class CalculatorViewController: UIViewController {
         twentyPctButton.isSelected = false
         sender.isSelected = true
         
+        
+    }
+    
+    @IBAction func calculatePressed(_ sender: UIButton) {
         if zeroPctButton.isSelected == true {
             print(zeroPct)
         } else if tenPctButton.isSelected == true {
@@ -48,9 +52,8 @@ class CalculatorViewController: UIViewController {
         } else {
             print(twentyPct)
         }
-    }
-    
-    @IBAction func calculatePressed(_ sender: UIButton) {
+        
+        
     }
     @IBAction func stepperValueChanged(_ sender: Any) {
     }
