@@ -19,6 +19,8 @@ class CalculatorViewController: UIViewController {
     var billTotal = 0.0
     var tip = 0.0
     var finalResult = "0.0"
+    var tipResult = 0
+    
     
    
     
@@ -43,7 +45,7 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+       
         stepperOutlet.value = 2
         stepperOutlet.stepValue = 1
         stepperOutlet.minimumValue = 1
@@ -65,12 +67,15 @@ class CalculatorViewController: UIViewController {
         if zeroPctButton.isSelected == true {
             print(zeroPct)
             tip = zeroPct
+            tipResult = 0
         } else if tenPctButton.isSelected == true {
             print(tenPct)
             tip = tenPct
+            tipResult = 10
         } else {
             print(twentyPct)
             tip = twentyPct
+            tipResult = 20
         }
         
         print(stepperOutlet.value)
@@ -83,13 +88,17 @@ class CalculatorViewController: UIViewController {
             finalResult = String(format: "%.2f", result)
             print("Result: ", finalResult)
         }
+        
+        performSegue(withIdentifier: "goToResult", sender: self)
+        
+        
     }
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         var stepperCurrent: CGFloat
         stepperCurrent = CGFloat(sender.value)
         stepperOutlet.value = Double(stepperCurrent)
         splitNumberLabel.text = String(format: "%.0f", Double(stepperCurrent))
-       // print(stepperCurrent)
+       
         billTextField.endEditing(true)
         
         
@@ -98,6 +107,20 @@ class CalculatorViewController: UIViewController {
     @IBAction func textFieldChanged(_ sender: UITextField) {
        
     }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult" {
+            let destinationVC = segue.destination as! ResultViewController
+            destinationVC.result = finalResult
+            destinationVC.peoples = splitNumberLabel.text ?? ""
+            destinationVC.percent = tipResult
+            
+            
+        }
+    }
+    
 }
 
 
