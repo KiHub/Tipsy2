@@ -14,6 +14,9 @@ class CalculatorViewController: UIViewController {
     let tenPct = 0.1
     let twentyPct = 0.2
     
+    let splitCounter = 1
+    
+    
     
     
     
@@ -28,10 +31,15 @@ class CalculatorViewController: UIViewController {
     
     @IBOutlet weak var twentyPctButton: UIButton!
     
+    @IBOutlet weak var stepperOutlet: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        stepperOutlet.value = 2
+        stepperOutlet.stepValue = 1
+        stepperOutlet.minimumValue = 1
+        stepperOutlet.maximumValue = 20
     }
 
 
@@ -55,7 +63,15 @@ class CalculatorViewController: UIViewController {
         
         
     }
-    @IBAction func stepperValueChanged(_ sender: Any) {
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        var stepperCurrent: CGFloat
+        stepperCurrent = CGFloat(sender.value)
+        stepperOutlet.value = Double(stepperCurrent)
+        splitNumberLabel.text = String(format: "%.0f", Double(stepperCurrent))
+        print(stepperCurrent)
+        
+        
+        
     }
     
     @IBAction func textFieldChanged(_ sender: UITextField) {
